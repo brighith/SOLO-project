@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add New Section</title>
+</head>
+<body>
+    <h1>Add New Section</h1>
+    <form method="post" action="{% url 'app:sectionCreate' %}">
+        {% csrf_token %}
+        <label for="section_name">Section Name:</label>
+        <input type="text" id="section_name" name="section_name" required>
+        <br>
+        <h2>Add Students to the Section:</h2>
+        {% if error %}
+            <ul>
+                {% for message in error %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+        <button type="button" id="add_student_button">Add Student</button>
+        <div id="students_list">
+            <!-- Student inputs will be added dynamically here -->
+        </div>
+        <br>
+        <input type="submit" value="Create Section">
+    </form>
+
+    <script>
+        // JavaScript to add and remove student input fields dynamically
+        document.addEventListener('DOMContentLoaded', function() {
+            const addStudentButton = document.getElementById('add_student_button');
+            const studentsListDiv = document.getElementById('students_list');
+
+            addStudentButton.addEventListener('click', function() {
+                const inputElement = document.createElement('input');
+                inputElement.type = 'text';
+                inputElement.name = 'student_name';
+                inputElement.placeholder = 'Enter Student Name';
+                studentsListDiv.appendChild(inputElement);
+                studentsListDiv.appendChild(document.createElement('br'));
+            });
+        });
+    </script>
+</body>
+</html>

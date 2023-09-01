@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ section_object.section_name }} - Marks</title>
+</head>
+<body>
+    <h1>{{ section_object.section_name }} - Marks</h1>
+    <table>
+        <tr>
+            <th>Student</th>
+            <th>Course</th>
+            <th>Mark</th>
+        </tr>
+        {% for mark_data in marks_data %}
+            <tr>
+                <td>{{ mark_data.student_name }}</td>
+                <td>{{ mark_data.course_name }}</td>
+                <td>{{ mark_data.mark }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+    <br>
+    <a href="{% url 'app:sectionDetails' id=section_object.id %}">Back to Section Details</a>
+</body>
+</html>

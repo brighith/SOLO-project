@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Marks for {{ course.course_name }}</title>
+</head>
+<body>
+    <h1>Add Marks for {{ course.course_name }}</h1>
+    <form method="post">
+        {% csrf_token %}
+        <ul>
+            {% for student in students %}
+            <li>
+                <label for="mark_{{ student.id }}">Mark for {{ student.student_name }}:</label>
+                <input type="number" name="mark_{{ student.id }}" step="0.01" min="0" max="100" required>
+            </li>
+            {% endfor %}
+        </ul>
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>

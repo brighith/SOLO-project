@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Delete Section</title>
+</head>
+<body>
+    <h1>Delete Section</h1>
+    <p>Are you sure you want to delete the section "{{ section.section_name }}"?</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">Delete</button>
+        <a href="{% url 'app:sectionDetails' section.id %}">Cancel</a>
+    </form>
+</body>
+</html>

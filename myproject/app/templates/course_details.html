@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ course.course_name }} - Course Details</title>
+</head>
+<body>
+    <h1>{{ course.course_name }} - Course Details</h1>
+    <form method="post" action="{% url 'app:courseDetails' course_id=course.id %}">
+        {% csrf_token %}
+        <table>
+            <tr>
+                <th>Student</th>
+                <th>Mark</th>
+            </tr>
+            {% for mark_data in marks_data %}
+                <tr>
+                    <td>{{ mark_data.student_name }}</td>
+                    <td>
+                        <input type="number" name="mark_{{ mark_data.student_name }}" min="0" max="100" value="{{ mark_data.mark }}">
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+        <br>
+        <input type="submit" value="Save Marks">
+    </form>
+    <br>
+    <a href="{% url 'app:sectionDetails' id=course.section.id %}">Back to Section Details</a>
+</body>
+</html>
